@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const searchInput = document.querySelector('.search-input');
 const searchButton = document.querySelector('.search-btn');
 
@@ -18,9 +19,5 @@ searchButton.addEventListener('click', () => {
 
 fetch('/users')
   .then((res) => res.json())
-  .then((data) => {
-    data.forEach((user) => {
-      createCard(user);
-    });
-  })
+  .then((data) => {createCard(data);})
   .catch((err) => console.log(err));
