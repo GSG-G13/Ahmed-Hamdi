@@ -4,4 +4,8 @@ const clientError = (req, res) => {
   res.status(404).sendFile(join(__dirname, '..', '..', '..', 'public', 'errorPage', '404.html'));
 };
 
-module.exports = { clientError };
+const serverError = (err, req, res, next) => {
+  res.status(500).sendFile(join(__dirname, '..', '..', '..', 'public', 'errorPage', '500.html'));
+};
+
+module.exports = { clientError, serverError };
