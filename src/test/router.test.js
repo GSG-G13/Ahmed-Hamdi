@@ -61,3 +61,15 @@ test('GET /users/user1 status 200 JSON', (done) => {
       return done();
     });
 });
+
+test('GET /users/user1/repos status 200 JSON', (done) => {
+  request(app)
+    .get('/users/user1/repos')
+    .expect(200)
+    .expect('Content-Type', /json/)
+    .end((err,res) => {
+      if (err) return done(err);
+      expect(typeof(res.body[0])).toBe('object');
+      return done();
+    });
+});
