@@ -14,4 +14,12 @@ const getOneUser = (req, res) => {
     .catch(console.log);
 };
 
-module.exports = { getAllUsers, getOneUser };
+const getUserRepos = (req, res) => {
+  const { username } = req.params;
+  fetch(`https://api.github.com/users/${username}/repos`)
+    .then((result) => result.json())
+    .then((result) => res.status(200).json(result))
+    .catch(console.log);
+};
+
+module.exports = { getAllUsers, getOneUser, getUserRepos };

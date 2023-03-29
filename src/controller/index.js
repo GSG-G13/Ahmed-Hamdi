@@ -6,6 +6,10 @@ const router = express.Router();
 
 router.get('/users', getAllUsers);
 router.get('/users/:username', getOneUser);
+<<<<<<< HEAD
+router.get('/users/:username/repos', getUserRepos);
+=======
 // router.get('/users/:username/repos', getUserRepos);
 router.use(clientError);
+>>>>>>> main
 module.exports = { router };
