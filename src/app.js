@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const compression = require('compression');
-const router = require('./controller/index');
+const { router } = require('./controller/index');
 
 const PORT = process.env.PORT || 3000;
 app.disable('x-powered-by');
