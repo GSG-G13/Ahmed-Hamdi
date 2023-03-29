@@ -14,4 +14,5 @@ router.get('/users', getAllUsers);
 router.get('/users/:username', getOneUser);
 router.get('/users/:username/repos', getUserRepos);
 router.use(clientError);
+router.use(serverError);
 module.exports = { router };
