@@ -118,7 +118,18 @@ const createPopUp = (data) => {
     languages.classList.add('languages');
     repoDiv.appendChild(languages);
 
-  
+    fetch(`/users/${owner.login}/repos/${name}/languages`)
+      .then((res) => res.json())
+      .then((res) => {
+        const keys = Object.keys(res);
+        keys.forEach((key) => {
+          const language = document.createElement('div');
+          language.classList.add('language');
+          language.textContent = key;
+          language.style.backgroundColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+          languages.appendChild(language);
+        });
+      });
 
 
     // create div for repo title
