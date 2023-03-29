@@ -127,6 +127,13 @@ const createPopUp = (data) => {
           language.classList.add('language');
           language.textContent = key;
           language.style.backgroundColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+          language.style.color = 'white';
+          language.style.padding = '5px';
+          language.style.borderRadius = '5px';
+          language.style.margin = '5px';
+          language.style.width = 'fit-content';
+          language.style.height = 'fit-content';
+          language.style.textAlign = 'center';
           languages.appendChild(language);
         });
       });
