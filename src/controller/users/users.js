@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+require('dotenv').config();
 const { join } = require('path');
 
 const handleHomePage = (req, res) => {
@@ -6,7 +7,7 @@ const handleHomePage = (req, res) => {
 };
 
 const getAllUsers = (req, res) => {
-  fetch('https://api.github.com/users',{
+  fetch('https://api.github.com/users', {
     headers: {
       Authorization: `token ${process.env.TOKEN}`,
     },
@@ -17,7 +18,7 @@ const getAllUsers = (req, res) => {
 };
 const getOneUser = (req, res) => {
   const { username } = req.params;
-  fetch(`https://api.github.com/users/${username}`,{
+  fetch(`https://api.github.com/users/${username}`, {
     headers: {
       Authorization: `token ${process.env.TOKEN}`,
     },
@@ -29,7 +30,7 @@ const getOneUser = (req, res) => {
 
 const getUserRepos = (req, res) => {
   const { username } = req.params;
-  fetch(`https://api.github.com/users/${username}/repos`,{
+  fetch(`https://api.github.com/users/${username}/repos`, {
     headers: {
       Authorization: `token ${process.env.TOKEN}`,
     },
@@ -41,7 +42,7 @@ const getUserRepos = (req, res) => {
 
 const getRepoLanguages = (req, res) => {
   const { username, repo } = req.params;
-  fetch(`https://api.github.com/repos/${username}/${repo}/languages`,{
+  fetch(`https://api.github.com/repos/${username}/${repo}/languages`, {
     headers: {
       Authorization: `token ${process.env.TOKEN}`,
     },
