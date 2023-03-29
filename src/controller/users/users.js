@@ -1,4 +1,9 @@
+const { join } = require('path');
 /* eslint-disable no-console */
+const handleHomePage = (req, res) => {
+  res.status(200).sendFile(join(__dirname, '..', '..', 'public', 'index.html'));
+};
+
 const getAllUsers = (req, res) => {
   fetch('https://api.github.com/users')
     .then((result) => result.json())
@@ -22,4 +27,9 @@ const getUserRepos = (req, res) => {
     .catch(console.log);
 };
 
-module.exports = { getAllUsers, getOneUser, getUserRepos };
+module.exports = {
+  getAllUsers,
+  getOneUser,
+  getUserRepos,
+  handleHomePage,
+};
