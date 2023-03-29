@@ -11,7 +11,6 @@ const getAllUsers = (req, res) => {
     .then((result) => res.status(200).json(result))
     .catch(console.log);
 };
-// @TODO - refactor result.json
 const getOneUser = (req, res) => {
   const { username } = req.params;
   fetch(`https://api.github.com/users/${username}`)
@@ -28,9 +27,18 @@ const getUserRepos = (req, res) => {
     .catch(console.log);
 };
 
+const getRepoLanguages = (req, res) => {
+  const { username, repo } = req.params;
+  fetch(`https://api.github.com/repos/${username}/${repo}/languages`)
+    .then((result) => result.json())
+    .then((result) => res.status(200).json(result))
+    .catch(console.log);
+};
+
 module.exports = {
   getAllUsers,
   getOneUser,
   getUserRepos,
   handleHomePage,
+  getRepoLanguages,
 };

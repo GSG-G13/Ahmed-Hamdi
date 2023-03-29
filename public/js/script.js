@@ -1,6 +1,13 @@
+/* eslint-disable no-console */
 /* eslint-disable no-undef */
 const searchInput = document.querySelector('.search-input');
 const searchButton = document.querySelector('.search-btn');
+
+fetch('/users')
+  .then((res) => res.json())
+  .then((data) => { createCard(data); })
+  .catch((err) => console.log(err));
+
 
 searchButton.addEventListener('click', () => {
   const searchValue = searchInput.value;
@@ -16,8 +23,3 @@ searchButton.addEventListener('click', () => {
       .catch((err) => console.log(err));
   }
 });
-
-fetch('/users')
-  .then((res) => res.json())
-  .then((data) => {createCard(data);})
-  .catch((err) => console.log(err));
