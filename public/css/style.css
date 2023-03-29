@@ -55,7 +55,6 @@ html {
 
 body {
     background-color: var(--var-main-darkest);
-    position: relative;
 }
 
 img {
@@ -266,14 +265,17 @@ div.attribution {
 
 .pop-up{
     position: absolute;
-    width: 90%;
-    padding: 20px;
-    top: 0;
-    left: 100px;
-    border: solid;
+    width: 95%;
+    padding: 20px 40px;
+    top: 20px;
+    left: 50px;
     background-color: #535e7a;
     transition: 0.5s ease-in-out;
     visibility: visible;
+    z-index: 99;
+    background-color: #14253d;
+    min-height: fit-content;
+
 }
 
 .pop-up-title{
@@ -287,7 +289,7 @@ div.attribution {
 
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    gap: 20px;
+    gap: 30px;
 }
 
 .pop-container{
@@ -297,4 +299,10 @@ div.attribution {
     flex-direction: column;
     gap: 20px;
     border-radius: 20px;
+    background-color: #253956;
+    transition: 0.5s ease-in-out;
+}
+
+.pop-container:hover{
+    transform: scale(1.1);
 }
