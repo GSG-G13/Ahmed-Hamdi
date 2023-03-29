@@ -4,6 +4,7 @@ const {
   getOneUser,
   getUserRepos,
   handleHomePage,
+  getRepoLanguages,
 } = require('./users/users');
 const { clientError, serverError } = require('./errors/error');
 
@@ -13,6 +14,7 @@ router.get('/', handleHomePage);
 router.get('/users', getAllUsers);
 router.get('/users/:username', getOneUser);
 router.get('/users/:username/repos', getUserRepos);
+router.get('/users/:username/repos/:repo/languages', getRepoLanguages);
 router.use(clientError);
-router.use(serverError)
+router.use(serverError);
 module.exports = { router };
