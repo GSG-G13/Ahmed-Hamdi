@@ -67,9 +67,21 @@ test('GET /users/user1/repos status 200 JSON', (done) => {
     .get('/users/user1/repos')
     .expect(200)
     .expect('Content-Type', /json/)
-    .end((err,res) => {
+    .end((err, res) => {
       if (err) return done(err);
-      expect(typeof(res.body[0])).toBe('object');
+      expect(typeof (res.body[0])).toBe('object');
+      return done();
+    });
+});
+
+test('GET /users/:username/repos/:repo/languages 200 json', (done) => {
+  request(app)
+    .get('/users/:username/repos/:repo/languages')
+    .expect(200)
+    .expect('Content-Type', /json/)
+    .end((err, res) => {
+      if (err) return done(err);
+      expect(res.statusCode).toBe(200);
       return done();
     });
 });

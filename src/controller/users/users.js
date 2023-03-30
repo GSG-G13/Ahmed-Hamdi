@@ -6,8 +6,8 @@ const handleHomePage = (req, res) => {
   res.status(200).sendFile(join(__dirname, '..', '..', 'public', 'index.html'));
 };
 
-const getAllUsers = (req, res) => {
-  fetch('https://api.github.com/users', {
+const fetchData = (url, res) => {
+  fetch(url, {
     headers: {
       Authorization: `token ${process.env.TOKEN}`,
     },
@@ -16,40 +16,23 @@ const getAllUsers = (req, res) => {
     .then((result) => res.status(200).json(result))
     .catch(console.log);
 };
+
+const getAllUsers = (req, res) => {
+  fetchData('https://api.github.com/users', res);
+};
 const getOneUser = (req, res) => {
   const { username } = req.params;
-  fetch(`https://api.github.com/users/${username}`, {
-    headers: {
-      Authorization: `token ${process.env.TOKEN}`,
-    },
-  })
-    .then((result) => result.json())
-    .then((result) => res.status(200).json(result))
-    .catch(console.log);
+  fetchData(`https://api.github.com/users/${username}`, res);
 };
 
 const getUserRepos = (req, res) => {
   const { username } = req.params;
-  fetch(`https://api.github.com/users/${username}/repos`, {
-    headers: {
-      Authorization: `token ${process.env.TOKEN}`,
-    },
-  })
-    .then((result) => result.json())
-    .then((result) => res.status(200).json(result))
-    .catch(console.log);
+  fetchData(`https://api.github.com/users/${username}/repos`, res);
 };
 
 const getRepoLanguages = (req, res) => {
   const { username, repo } = req.params;
-  fetch(`https://api.github.com/repos/${username}/${repo}/languages`, {
-    headers: {
-      Authorization: `token ${process.env.TOKEN}`,
-    },
-  })
-    .then((result) => result.json())
-    .then((result) => res.status(200).json(result))
-    .catch(console.log);
+  fetchData(`https://api.github.com/repos/${username}/${repo}/languages`, res);
 };
 
 module.exports = {
