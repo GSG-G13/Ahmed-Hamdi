@@ -1,13 +1,15 @@
 /* eslint-disable no-console */
 require('dotenv').config();
 const { join } = require('path');
+// eslint-disable-next-line import/no-unresolved, import/no-extraneous-dependencies
+const nfetch = require('node-fetch');
 
 const handleHomePage = (req, res) => {
   res.status(200).sendFile(join(__dirname, '..', '..', 'public', 'index.html'));
 };
 
 const fetchData = (url, res) => {
-  fetch(url, {
+  nfetch(url, {
     headers: {
       Authorization: `token ${process.env.TOKEN}`,
     },

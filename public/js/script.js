@@ -13,7 +13,7 @@ searchButton.addEventListener('click', () => {
     // eslint-disable-next-line no-alert
     alert('Please enter a valid search term');
   } else {
-    fetch(`/users/${searchValue}`)
+    fetch(`/users/${searchInput.value}`)
       .then((res) => res.json())
       .then((data) => {
         createCard(data);
