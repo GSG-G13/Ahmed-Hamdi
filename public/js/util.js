@@ -1,7 +1,7 @@
 const whole = document.querySelector('.whole');
-const is = document.querySelector('#is');
+const is = document.querySelector('#parent-pop-up');
 
-const refactoredCreateCard = (data) => {
+const renderCardData = (data) => {
   const card = document.createElement('div');
   card.classList.add('card');
 
@@ -44,17 +44,6 @@ const refactoredCreateCard = (data) => {
   coinBase1.classList.add('coin-base');
   flexRow.appendChild(coinBase1);
 
-  const img1 = document.createElement('img');
-  img1.classList.add('small-image');
-  img1.src = 'https://i.postimg.cc/T1F1K0bW/Ethereum.png';
-  img1.alt = 'Ethereum';
-  coinBase1.appendChild(img1);
-
-  const button1 = document.createElement('button');
-  button1.id = 'submit-btn';
-  button1.textContent = 'view repos';
-  coinBase1.appendChild(button1);
-
   const coinBase2 = document.createElement('div');
   coinBase2.classList.add('coin-base');
   flexRow.appendChild(coinBase2);
@@ -68,6 +57,7 @@ const refactoredCreateCard = (data) => {
   const button2 = document.createElement('button');
   button2.id = 'submit-btn';
   button2.textContent = 'view lang';
+  // eslint-disable-next-line no-use-before-define
   button2.addEventListener('click', () => viewRepos(data.login));
   coinBase2.appendChild(button2);
 
@@ -78,10 +68,10 @@ const refactoredCreateCard = (data) => {
 const createCard = (data) => {
   whole.innerHTML = '';
   if (!Array.isArray(data)) {
-    refactoredCreateCard(data);
+    renderCardData(data);
   } else {
     data.forEach((ele) => {
-      refactoredCreateCard(ele);
+      renderCardData(ele);
     });
   }
 };
@@ -90,16 +80,12 @@ const createPopUp = (data) => {
   const section = document.createElement('section');
   section.classList.add('pop-up');
 
-  // create h1 element
   const h1 = document.createElement('h1');
   h1.classList.add('pop-up-title');
   h1.textContent = 'user repo';
 
-  // create div element for repositories
   const div = document.createElement('div');
   div.classList.add('pop-up-repos');
-
-  // create div element for close button
 
   const closeBtn = document.createElement('button');
   closeBtn.classList.add('close-btn');
@@ -110,6 +96,7 @@ const createPopUp = (data) => {
   section.appendChild(closeBtn);
 
   data.forEach((ele) => {
+    // eslint-disable-next-line camelcase
     const { name, owner, html_url } = ele;
     const repoDiv = document.createElement('div');
     repoDiv.classList.add('pop-container');
@@ -127,55 +114,43 @@ const createPopUp = (data) => {
           language.classList.add('language');
           language.textContent = key;
           language.style.backgroundColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+          language.style.color = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
           languages.appendChild(language);
         });
       });
 
-
-    // create div for repo title
     const titleDiv = document.createElement('div');
     titleDiv.classList.add('repo-title');
 
-    // create h2 element for repo title
     const titleH2 = document.createElement('h2');
     titleH2.textContent = name;
 
-    // append h2 to title div
     titleDiv.appendChild(titleH2);
 
-    // create div for repo owner
     const ownerDiv = document.createElement('div');
     ownerDiv.classList.add('repo-owner');
 
-    // create h2 element for repo owner
     const ownerH2 = document.createElement('h2');
     ownerH2.textContent = owner.login;
 
-    // append h2 to owner div
     ownerDiv.appendChild(ownerH2);
 
-    // create div for repo link
     const linkDiv = document.createElement('div');
     linkDiv.classList.add('repo-link');
 
-    // create h2 element for repo link
     const linkH2 = document.createElement('a');
     linkH2.textContent = 'GitHub Repo link';
+    // eslint-disable-next-line camelcase
     linkH2.href = html_url;
 
-    // append h2 to link div
     linkDiv.appendChild(linkH2);
 
-    // append title, owner, and link divs to repo div
     repoDiv.appendChild(titleDiv);
     repoDiv.appendChild(ownerDiv);
     repoDiv.appendChild(linkDiv);
 
-    // append repo div to repositories div
     div.appendChild(repoDiv);
   });
-
-  // append h1 and repositories div to section element
   section.appendChild(h1);
   section.appendChild(div);
   is.appendChild(section);
@@ -187,5 +162,5 @@ const viewRepos = (username) => {
     .then((data) => {
       createPopUp(data);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => { throw new TypeError(err); });
 };
